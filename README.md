@@ -29,3 +29,14 @@ The static Python HTTP server cannot run `/api/tutor`. Either test on your deplo
 Groq's Free Plan has limits (requests/tokens per minute/day). If reached, the tutor shows a rate-limit error; no fallback paid usage is assumed. The in-memory throttle in this demo is **not reliable across multiple serverless instances**. If sharing publicly, add durable rate limiting and ideally authentication/abuse prevention. All visitors share your Groq account's rate limits. Any AI model can make mathematical mistakes; verify against the worked examples.
 
 Progress remains browser-local via `localStorage`, not shared across devices.
+
+
+## New homework and exam-review content
+
+- Adds original Homework G–P, Homework L’s handwritten solution sheet, LM Problems, and the November 12 Test 2 review sheet in `homework_sources/`.
+- **46 topics, 209 interactive questions** (previously 41 topics, 138 questions); old topic indices and saved progress keys retained.
+- New portfolio section: asset returns and weights, expected portfolio return, covariance matrix, portfolio risk, minimum-risk portfolios.
+- New interactive questions are tagged by source (`HOMEWORK H`, `HOMEWORK L`, `LM PROBLEMS`, etc.) and include numbered worked solutions; a homework-only filter appears on relevant practice pages.
+- The full LM Problems textbook page contains far more exercises than the hand-verified subset. All original exercises remain available in the linked reference PDF; not all are interactive or have instructor-provided solutions.
+- **Accuracy note:** Only Homework L has a provided official homework answer key. The remaining homework answers here are independently derived; unusual wording (e.g., “two tails”) is disambiguated in the question. Some free-response fields expect a particular answer format; use the step-by-step solution if the checker rejects an equivalent expression.
+- No personal API key is included. Continue to set `GROQ_API_KEY` privately in Vercel.
