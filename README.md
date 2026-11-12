@@ -1,23 +1,17 @@
-# Math Studio — Exam Study Hub
+# Math Studio — Vercel / GitHub ready
 
-A standalone, interactive math study app with topics, formulas, worked examples, practice problems, quizzes, and browser-local progress.
+Static website with vanilla JavaScript, separate CSS, and a bundled local copy of MathJax. No Node server, no build command, no API key, and no database required.
 
-## Publish on Vercel
+## Deploy
+Upload **all** files and the `mathjax/` folder to the root of your GitHub repository (not the ZIP itself). In Vercel select **Other** for framework, leave build command empty, and deploy.
 
-1. Create a GitHub repository (e.g. `math-studio`).
-2. Upload **`index.html`** and this README to the root of the repository.
-3. In Vercel, choose **Add New → Project**, connect GitHub, and import your repository.
-4. Set **Framework Preset** to **Other** (if asked). Leave root at `./`, with no build command. Deploy.
-5. Share the resulting `https://your-project.vercel.app` URL.
+## Running locally
+Use a small static server from the project folder (`python3 -m http.server 8000`) then open `http://localhost:8000`. Opening `index.html` directly may work in some browsers, but serving the files is more reliable.
 
-## Run locally
+## What's where
+- `index.html` — page structure and MathJax configuration
+- `styles.css` — dark UI, collapsible navigation, solved/incorrect states
+- `app.js` — 41 study topics, practice questions, instructor quiz sets, answer checking, progress persistence, and mathematical formula mappings
+- `mathjax/` — bundled math-rendering engine and fonts, so no CDN access is needed
 
-Open `index.html` in your browser. There are no build tools or dependencies.
-
-## Update the website
-
-Replace the root `index.html` in GitHub with a newer version and commit. Vercel will redeploy automatically.
-
-## Study progress
-
-Practice progress is stored in each user's browser using localStorage, not on a shared server. Progress might not follow you to another device, domain, or browser, and can be lost when browser site data is cleared.
+Progress is saved to the browser's localStorage and is private to each browser/device. Browser data can be lost if cleared. Different origins (file://, localhost, vercel.app) do not automatically share saved progress.
