@@ -208,3 +208,40 @@ const _showHomeHw=showHome;
 showHome=function(){_showHomeHw();const footer=document.querySelector('#content footer');if(footer){footer.insertAdjacentHTML('beforebegin',`<details class="quiet-details"><summary class="quiet-summary"><strong>Original homework &amp; Test 2 review PDFs</strong><span class="small">13 source files</span></summary><div class="source-list">${HOMEWORK_PDFS.map(f=>`<a target="_blank" rel="noopener noreferrer" href="./homework_sources/${encodeURIComponent(f)}">${escapeHTML(f)}</a>`).join('')}</div><p class="small">Full textbook assignment is included as a PDF; selected verified exercises are interactive in their concept sections. Use the source sheets for the original wording.</p></details>`);}}
 const HOMEWORK_PDFS=["HomeworkG(1).pdf", "HomeworkH(1).pdf", "HomeworkI(1).pdf", "HomeworkJ(1).pdf", "HomeworkK(1).pdf", "HomeworkL(1).pdf", "HomeworkLSol.pdf", "HomeworkM.pdf", "HomeworkN(1).pdf", "HomeworkO.pdf", "HomeworkP.pdf", "LMProblems(1).pdf", "Review2.pdf"];
 showHome();
+
+// Formula sheet accordion — topic-by-topic, grouped by section.
+function setFormulaAccordions(open){
+  document.querySelectorAll('#formulaSheet details').forEach(d=>{d.open=open});
+  if(open) typesetVisibleMath();
+}
+showFormulas=function(){
+  active=-1;
+  const groupMarkup=headings().map((group,gi)=>{
+    const topics=DATA.map((t,i)=>({t,i})).filter(({t})=>t.group===group);
+    return `<details class="formula-group" ${gi===0?'open':''}>
+      <summary class="formula-group-title"><span>${escapeHTML(group)}</span><span class="formula-count">${topics.length} topics</span></summary>
+      <div class="formula-group-body">${topics.map(({t,i})=>`
+        <details class="formula-topic">
+          <summary class="formula-topic-title"><span>${escapeHTML(t.title)}</span></summary>
+          <div class="formula-topic-body"><div class="formula">${formulaHTML(i)}</div>
+            <button class="btn ghost formula-learn" onclick="openTopic(${i})">Open full lesson →</button>
+          </div>
+        </details>`).join('')}</div>
+    </details>`;
+  }).join('');
+  el('content').innerHTML=topNav()+`<div id="formulaSheet">
+    <div class="eyebrow">Quick reference</div><h1 class="h1">Complete formula sheet</h1>
+    <p class="lead">Select a section, then expand any topic to see its formulas. Keep the rest tucked away while you study.</p>
+    <div class="actions formula-controls">
+      <button class="btn" onclick="setFormulaAccordions(true)">Expand all</button>
+      <button class="btn ghost" onclick="setFormulaAccordions(false)">Collapse all</button>
+      <button class="btn ghost" onclick="window.print()">Print / Save as PDF</button>
+    </div>${groupMarkup}</div>`;
+  renderSidebar();
+  window.scrollTo(0,0);
+  typesetVisibleMath();
+};
+// Render math when a previously closed topic opens, and let groups nest naturally.
+document.addEventListener('toggle',e=>{
+  if(e.target?.open && e.target?.closest?.('#formulaSheet')) typesetVisibleMath();
+},true);

@@ -48,3 +48,25 @@ main{max-width:1140px;padding:38px clamp(22px,5vw,70px) 100px}
 .homework-label{background:rgba(94,170,222,.13)!important;color:#a4d5f4!important;border-color:rgba(94,170,222,.28)!important}
 
 .source-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;padding:18px 4px}.source-list a{border:1px solid var(--line,#334155);border-radius:10px;padding:10px 12px;font-size:13px;text-decoration:none;color:#b6d7f1}.source-list a:hover{background:rgba(148,163,184,.10)}
+
+/* Collapsible formula sheet */
+#formulaSheet{max-width:1100px}
+.formula-controls{margin:20px 0 25px}
+.formula-group{border:1px solid #314558;border-radius:14px;background:#162330;margin:14px 0;overflow:hidden}
+.formula-group-title,.formula-topic-title{display:flex;align-items:center;justify-content:space-between;gap:14px;cursor:pointer;list-style:none}
+.formula-group-title::-webkit-details-marker,.formula-topic-title::-webkit-details-marker{display:none}
+.formula-group-title{padding:20px 22px;font-weight:700;font-size:17px;color:#e8f1fa}
+.formula-topic-title{padding:15px 18px;font-size:14px;font-weight:600;color:#d6e5f0}
+.formula-group-title::before,.formula-topic-title::before{content:'›';color:#95b6cf;display:inline-block;transform:rotate(0);transition:transform .2s;flex:0 0 auto;font-size:22px;line-height:1}
+.formula-group[open]>.formula-group-title::before,.formula-topic[open]>.formula-topic-title::before{transform:rotate(90deg)}
+.formula-group-title span:first-child,.formula-topic-title span:first-child{flex:1}
+.formula-count{font-size:12px;color:#91a7b9;font-weight:500;white-space:nowrap}
+.formula-group-body{border-top:1px solid #324557;padding:8px 16px 15px}
+.formula-topic{border:1px solid #334557;background:#111d29;border-radius:10px;margin:9px 0;overflow:hidden}
+.formula-topic[open]{border-color:#53748b;background:#162636}
+.formula-topic-title:hover,.formula-group-title:hover{background:#ffffff08}
+.formula-topic-body{padding:0 17px 17px;border-top:1px solid #2e4557}
+.formula-topic-body .formula{margin-top:15px;border:1px solid #2b4355;background:#0e1924}
+.formula-learn{margin-top:12px}
+@media(max-width:600px){.formula-group-title{padding:16px 14px;font-size:15px}.formula-group-body{padding:7px}.formula-topic-title{padding:13px 11px}.formula-topic-body{padding:0 10px 12px}}
+@media print{#formulaSheet .formula-group-body,#formulaSheet .formula-topic-body{display:block!important}#formulaSheet .formula-group,#formulaSheet .formula-topic{break-inside:avoid}#formulaSheet .formula-learn,#formulaSheet .formula-controls{display:none!important}}

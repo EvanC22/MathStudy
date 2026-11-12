@@ -40,3 +40,6 @@ Progress remains browser-local via `localStorage`, not shared across devices.
 - The full LM Problems textbook page contains far more exercises than the hand-verified subset. All original exercises remain available in the linked reference PDF; not all are interactive or have instructor-provided solutions.
 - **Accuracy note:** Only Homework L has a provided official homework answer key. The remaining homework answers here are independently derived; unusual wording (e.g., “two tails”) is disambiguated in the question. Some free-response fields expect a particular answer format; use the step-by-step solution if the checker rejects an equivalent expression.
 - No personal API key is included. Continue to set `GROQ_API_KEY` privately in Vercel.
+
+## Collapsible formula sheet
+The formula sheet now has expandable subject sections and individual topics. Use **Expand all** or **Collapse all** as needed. The section titles can be opened independently.
